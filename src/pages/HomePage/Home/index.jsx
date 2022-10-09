@@ -10,10 +10,11 @@ import Nav3 from '../../../asserts/images/nav-3.png';
 import Nav4 from '../../../asserts/images/nav-4.png';
 import { useNavigate } from 'react-router-dom'
 import { useCity } from '../../../utils/city'
+import News from '../News';
 
 // 首页
 export default function Home() {
-  const [cityValue, cityLabel] = useCity();
+  const [cityValue] = useCity();
 
   return (
     <div>
@@ -113,7 +114,7 @@ const Menu = () => {
 
   return (
     <Grid columns={4} gap={8}
-      style={{padding: '10px 0'}}
+      style={{padding: '10px 0',backgroundColor:'#fff'}}
     >
 
       {menus.map((item) => (
@@ -169,15 +170,15 @@ const Groups = ({ cityValue }) => {
 
   // 生成租房小组数据
   const groupItems = groups.map((item) => (
-      <Grid.Item key={item.id}>
+      <Grid.Item key={item.id} style={{backgroundColor:'#fff',height:'65px',width:'160px'}}>
           <div style={{float: 'left',position: 'relative',top: '5px',left: '30px'}}>
               <p style={{ fontSize: '13px',fontWeight:'700'}}>{item.title}</p>
-              <span style={{fontSize: '12px',color:'#999'}}>{item.desc}</span>
+              <span style={{fontSize: '12px',color:'#999' ,paddingBottom:'3px'}}>{item.desc}</span>
           </div>
           <img
               src={`${BASE_URL}${item.imgSrc}`}
               alt={item.title}
-              style={{position:'relative',top: '5px',left: '50px',height: '55px'}}   
+              style={{position:'relative',top: '5px',left: '35px',height: '55px'}}   
           />
       </Grid.Item>
   ));
@@ -185,53 +186,5 @@ const Groups = ({ cityValue }) => {
   return (
       // 判断是否有加载租房小组数据，如已加载则显示租房小组
       groupsLoaded && <Grid columns={2} gap={10}>{groupItems}</Grid>
-  );
-};
-
-
-const News = ({ cityValue }) => {
-  // 设置最新资讯数据和加载状态state
-  const [news, setNews] = useState([]);
-  const [newsLoaded, setNewsLoaded] = useState(false);
-
-  // 第一次挂载组件时获取当前城市最新资讯数据
-  useEffect(() => {
-      const getNews = async (id) => {
-          const newsRes = await axios.get(`/home/news`, {
-              params: {
-                  area: id
-              }
-          });
-          setNews(newsRes.data.body);
-          setNewsLoaded(true);
-      };
-
-      getNews(cityValue);
-
-      // 卸载组件时取消加载状态，防止内存溢出
-      return () => {
-          setNewsLoaded(false);
-      };
-  }, [cityValue]);
-
-  // 生成最新资讯数据
-  const newsItems = news.map((item) => (
-    <Grid.Item key={item.id}>
-      <img
-          src={`${BASE_URL}${item.imgSrc}`}
-          alt={item.title}
-          style={{width:'150px',float:'left'}}
-      />
-      <div style={{overflow: 'hidden',position: 'relative',height: '100%',paddingLeft: '12px'}}>
-          <h2 style={{ marginBottom: '15px',fontSize: '14px'}}>{item.title}</h2>
-          <span style={{position: 'absolute',bottom: '0px',fontSize: '12px',color: '#9c9fa1'}}>{item.from}</span>
-          <span style={{position: 'absolute',bottom: '0px',fontSize: '12px',color: '#9c9fa1',right: '15px'}}>{item.date}</span>
-      </div>
-    </Grid.Item >
-  ));
-
-  return (
-      // 判断是否有加载最新资讯数据，如已加载则显示最新资讯
-      newsLoaded && <Grid columns={1}>{newsItems}</Grid>
   );
 };

@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './index.css'
 
 import { TabBar } from 'antd-mobile';
 import { useLocation, Outlet, useNavigate} from 'react-router-dom';
@@ -12,7 +11,7 @@ export default function HomePage() {
 
   return (
     <>
-      <div style={{paddingBottom: '60px'}}>
+      <div style={{paddingBottom: '10px', backgroundColor:'#F5F5F5'}}>
         {/* 设置Router出口 */}
         <Outlet />
       </div>
