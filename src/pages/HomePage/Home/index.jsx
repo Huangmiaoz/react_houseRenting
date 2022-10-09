@@ -3,7 +3,7 @@ import { axiosAPI as axios} from '../../../utils/axios'
 import {BASE_URL} from '../../../utils/url'
 
 import { Swiper,Grid } from 'antd-mobile'
-
+import MySearchBar from '../../../components/MySearchBar'
 import Nav1 from '../../../asserts/images/nav-1.png';
 import Nav2 from '../../../asserts/images/nav-2.png';
 import Nav3 from '../../../asserts/images/nav-3.png';
@@ -14,10 +14,11 @@ import News from '../News';
 
 // 首页
 export default function Home() {
-  const [cityValue] = useCity();
+  const [cityValue,cityLabel] = useCity();
 
   return (
     <div>
+      <MySearchBar city={cityLabel}/>
       {/* 轮播图和导航菜单栏 */}
       <Swipers/>
       <Menu/>
@@ -114,7 +115,7 @@ const Menu = () => {
 
   return (
     <Grid columns={4} gap={8}
-      style={{padding: '10px 0',backgroundColor:'#fff'}}
+      style={{padding: '10px 0',backgroundColor:'#fff',position:'relative'}}
     >
 
       {menus.map((item) => (
