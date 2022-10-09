@@ -1,15 +1,14 @@
-import { Navigate, Router, Routes,Route } from "react-router-dom";
+import { Navigate, Routes,Route } from "react-router-dom";
 import CityList from './pages/CityList/index.jsx';
 import Home from './pages/HomePage/Home/index.jsx';
 import News from './pages/HomePage/News/index.jsx';
 import Search from './pages/search/index.jsx';
 import Profile from "./pages/HomePage/profile/index.js";
 import HomePage from "./pages/HomePage/index.jsx";
+import MapPage from "./pages/MapPage/index.jsx";
 
-// import Routers from './routes/index.js'
 
 function App() {
-  // const element = useRoutes(Routers)
   return (
     <Routes>
       {/* 默认打开/home页面 */}
@@ -21,6 +20,7 @@ function App() {
           <Route path="/home/profile" exact element={<Profile />} />
       </Route>
       <Route path="/citylist" element={<CityList />} />
+      <Route path="/mappage" element={<MapPage />} />
     </Routes>
   )
 };

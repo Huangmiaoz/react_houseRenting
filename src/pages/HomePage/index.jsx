@@ -1,15 +1,18 @@
 import React from 'react'
+import styles from './index.css'
+
 import { TabBar } from 'antd-mobile';
 import { useLocation, Outlet, useNavigate} from 'react-router-dom';
 import { SearchOutline, TextOutline,UserOutline,UnorderedListOutline } from 'antd-mobile-icons'
-import styles from './index.css'
+// import { useCity } from '../../utils/city';
 
 
 export default function HomePage() {
-  
+  // 获取当前城市
+
   return (
     <>
-      <div className={styles.homepage}>
+      <div style={{paddingBottom: '60px'}}>
         {/* 设置Router出口 */}
         <Outlet />
       </div>
