@@ -7,7 +7,7 @@ import Profile from "./pages/HomePage/profile/index.jsx";
 import HomePage from "./pages/HomePage/index.jsx";
 import MapPage from "./pages/MapPage/index.jsx";
 
-
+// import './index.css'
 function App() {
   return (
     <Routes>

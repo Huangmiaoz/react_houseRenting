@@ -44,12 +44,12 @@ const Swipers = () => {
    // 设置轮播图数据和加载状态state
    const [swipers, setSwipers] = useState([]);
    const [swipersLoaded, setSwipersLoaded] = useState(false);
-    console.log('swiper');
+    // console.log('swiper');
    // 第一次挂载组件时获取轮播图数据
    useEffect(() => {
     const getSwipers = async () => {
         const swipersRes = await axios.get(`/home/swiper`);
-        console.log('swipersRes',swipersRes)
+        // console.log('swipersRes',swipersRes)
         setSwipers(swipersRes.data.body);
         setSwipersLoaded(true);
     };
@@ -147,7 +147,7 @@ const Groups = ({ cityValue }) => {
   // 设置租房小组数据和加载状态state
   const [groups, setGroups] = useState([]);
   const [groupsLoaded, setGroupsLoaded] = useState(false);
-  console.log('group')
+  // console.log('group')
   // 第一次挂载组件时获取当前城市租房小组数据
   useEffect(() => {
       const getGroups = async (id) => {
@@ -156,7 +156,7 @@ const Groups = ({ cityValue }) => {
                   area: id
               }
           });
-          console.log('groupsRes',groupsRes)
+          // console.log('groupsRes',groupsRes)
           setGroups(groupsRes.data.body);
           setGroupsLoaded(true);
       };
