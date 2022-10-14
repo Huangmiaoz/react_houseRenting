@@ -15,6 +15,7 @@ export default function CityList() {
   const HOUSE_CITY = ['北京', '上海', '广州', '深圳']
 
   useEffect(() => {
+    console.log(localStorage.getItem('hkzf_city'))
     async function getCity() {
       await getCityLisy();
       try {
@@ -80,8 +81,9 @@ export default function CityList() {
   // 切换城市
   const changeCity = ({ label, value }) => {
     if (HOUSE_CITY.indexOf(label) > -1) {
-      setCity(label)
-      navigate(-1)
+      // 这里的存储应该转化为JSON格式
+      setCity(JSON.stringify({label,value}));
+      navigate(-1);
     } else {
       Toast.show({
         content: '该城市暂无房源数据',

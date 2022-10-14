@@ -58,6 +58,6 @@ const useCity = () => {
 // 如果当前页面调用getCity但是token丢失，会直接报错，不建议使用
 const getCity = () => JSON.parse(localStorage.getItem(TOKEN_NAME));
 
-const setCity = (value) => localStorage.setItem(TOKEN_NAME, value);
+const setCity = (value) => {localStorage.setItem(TOKEN_NAME, value); console.log(localStorage.getItem(TOKEN_NAME))}
 
 export { getCurrentCity, useCity, getCity, setCity };
