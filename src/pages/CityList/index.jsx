@@ -18,6 +18,8 @@ export default function CityList() {
     async function getCity() {
       await getCityLisy();
       try {
+        // 使用measureAllRows提前计算List中每一行的高度，实现scrollToRow的精确跳转
+        // 但是如果调用这个方法的时候没有数据，会报错，因此要在异步操作执行完成后再调用
         cityListComponent.current.measureAllRows()
       } catch (err) {
         // console.log(err, 'err')
@@ -72,7 +74,7 @@ export default function CityList() {
     cityIndex.unshift('#')
     setCitylist(citylist)
     setCityIndex(cityIndex)
-    console.log('城市列表数据：', citylist, cityIndex, curCity)
+    // console.log('城市列表数据：', citylist, cityIndex, curCity)
   }
 
   // 切换城市
@@ -111,7 +113,9 @@ export default function CityList() {
     return TITLE_HEIGHT + citylist[cityIndex[index]].length * NAME_HEIGHT
   }
 
+  // 用于获取当前行的信息
   // 左侧联动右侧：获取startIndex，更新右侧activeIndex
+  // startIndex用于获取到起始行索引号——通过参数解构获取
   const rowsRendered = ({ startIndex }) => {
     // console.log(startIndex, 'startIndex右')
     if (activeIndex !== startIndex) {
@@ -120,10 +124,10 @@ export default function CityList() {
   }
 
   // 右侧联动左侧：ref绑定List组件，调用实例方法
-  // 问题：渲染过的列表才能精确跳转，提前计算每一行高度来解决
+  // 问题：scrollToRow渲染过的列表才能精确跳转，提前计算每一行高度来解决
   const renderCityIndex = () => {
-    return cityIndex.map((item, index) => (
-      <li className="cityIndexItem" key={item} onClick={() => { cityListComponent.current.scrollToRow(index); console.log(index, '左'); setActiveIndex(index) }}>
+    return cityIndex.map((item, index) => ( 
+      <li className="cityIndexItem" key={item} onClick={() => { cityListComponent.current.scrollToRow(index); setActiveIndex(index) }}>
         <span className={activeIndex === index ? 'indexActive' : ''}>
           {item === 'hot' ? '热' : item.toUpperCase()}
         </span>
@@ -145,6 +149,7 @@ export default function CityList() {
               rowHeight={getRowHeight}
               rowRenderer={rowRenderer}
               onRowsRendered={rowsRendered}
+              // 选中的索引号的行出现在页面的最顶部，auto是出现在页面中，不保证出现在最顶部
               scrollToAlignment="start"
             />
           )}
