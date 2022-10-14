@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { NavBar } from 'antd-mobile'
 import { getCity } from '../../utils/city'
 import { useNavigate } from 'react-router-dom';
+import MyNavBar from '../../components/NavBar';
 const MapPage = () =>  {
   const history = useNavigate();
   const back =() => {
@@ -23,7 +24,7 @@ const MapPage = () =>  {
   return (
     <div style={{height:'100%',width:'100%'}}>
       {/* 地图元素 */}
-      <NavBar onBack={back}  style={{backgroundColor:'#f5f6f5'}}>地图找房</NavBar>
+      <MyNavBar>地图找房</MyNavBar>
       <div id='container' style={{height:'100%'}} />
 
     </div>

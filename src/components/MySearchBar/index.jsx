@@ -15,7 +15,7 @@ const MySearchBar = ({city}) => {
                
                <Input placeholder='请输入小区或地址' disabled/>
             </div>
-            <LocationOutline style={{marginRight:'18px',marginTop:'5px'}} fontSize={20} />
+            <LocationOutline style={{marginRight:'18px',marginTop:'5px'}} fontSize={20} onClick={() => history('/mappage')} />
         </div>
     )
 }

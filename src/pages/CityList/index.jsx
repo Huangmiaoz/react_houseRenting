@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { getCurrentCity, setCity } from '../../utils/city';
 import { List as VList, AutoSizer } from 'react-virtualized'
 import  '../css/cityList.css';
+import MyNavBar from '../../components/NavBar/index.jsx';
 
 export default function CityList() {
   const navigate = useNavigate()
@@ -140,7 +141,8 @@ export default function CityList() {
   return (
     <>
       <div className='cityList'>
-        <NavBar className='navHeader' onBack={() => { navigate(-1) }}>城市选择</NavBar>
+        {/* <NavBar className='navHeader' onBack={() => { navigate(-1) }}>城市选择</NavBar>*/}
+        <MyNavBar>城市选择</MyNavBar>
         <AutoSizer>
           {({ height, width }) => (//需要设置根元素高度
             <VList
