@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import {Input} from 'antd-mobile'
 import { LocationOutline,DownOutline} from 'antd-mobile-icons'
+import PropTypes from 'prop-types'
 const MySearchBar = ({city}) => {
     const history = useNavigate(); 
     return (
@@ -21,3 +22,7 @@ const MySearchBar = ({city}) => {
 }
 
 export default MySearchBar;
+
+MySearchBar.propTypes = {
+    city: PropTypes.string.isRequired
+};

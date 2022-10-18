@@ -5,7 +5,7 @@ import { useLocation, Outlet, useNavigate} from 'react-router-dom';
 import { SearchOutline, TextOutline,UserOutline,UnorderedListOutline } from 'antd-mobile-icons'
 // import { useCity } from '../../utils/city';
 
-
+import '../css/index.css'
 export default function HomePage() {
   // 获取当前城市
 

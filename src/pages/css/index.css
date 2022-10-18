@@ -1,0 +1,15 @@
+.adm-tab-bar {
+  position: fixed;
+  height: 50px;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+}
+.adm-tab-bar .adm-tab-bar-item-active {
+  color: #21b97a;
+}
+.adm-tab-bar .adm-tab-bar-item-active .iconfont {
+  font-size: 20px;
+}

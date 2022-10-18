@@ -2,7 +2,7 @@ import { Navigate, Routes,Route } from "react-router-dom";
 import CityList from './pages/CityList/index.jsx';
 import Home from './pages/HomePage/Home/index.jsx';
 import News from './pages/HomePage/News/index.jsx';
-import Search from './pages/Search/index.jsx';
+import Search from './pages/HomePage/Search/index.jsx';
 import Profile from "./pages/HomePage/profile/index.jsx";
 import HomePage from "./pages/HomePage/index.jsx";
 import MapPage from "./pages/MapPage/index.jsx";
