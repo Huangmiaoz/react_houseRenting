@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import '../css/HouseItem.css' 
-export default function HouseItems(
-  {src,
+export default function HouseItems({
+  src,
   title,
   desc,
   tags,
   price,
-  onClick}
-) {
+  onClick
+}) {
   return (
     <div
       className='houseItem'

@@ -8,7 +8,10 @@ import FilterPicker from './FilterPicker';
 import FilterMore from './FilterMore';
 import _ from 'lodash'
 import styles from './index.module.css'
-const Filter = () => {
+const Filter = ({
+    filters,
+    setFilters
+}) => {
     // 获取当前城市
     const [cityValue] = useCity();
     // 设置筛选条件state
@@ -33,6 +36,8 @@ const Filter = () => {
     const [openType, setOpenType] = useState('');
     // 设置筛选条件数据state
     const [filterData, setFilterData] = useState({});
+    // 组合筛选条件,因为要父子之间传递，因此直接在父组件中定义即可，然后传递到子组件来，无需再在子组件中定义
+    // const [filters,setFilters] = useState({});
     useEffect(() => {
         const getFilterData = async (id) => {
             const result = await axios.get(`/houses/condition?id=${id}`);
@@ -125,14 +130,50 @@ const Filter = () => {
         // 更新菜单选项状态
         setTitleSelectedStatus(newTitleSelectedStatus);
         // console.log(newTitleSelectedStatus);
-        // 这是被选中的
+
+        // 这是被选中的数据----最新选中筛选值状态
         const newSelectedValue = {
             ...selectedValue,
             [openType]: filterValue
         }
         // console.log(newSelectedValue)
         setSelectedValue(newSelectedValue);
+
+        // 解构最新选中筛选值状态
+        const { area, mode, price, more } = newSelectedValue;
+        console.log(area, mode, price, more);
+        const areaKey = area[0];
+
+        let areaValue = null;
+
+        // 判定areaValue的值
+        if (areaKey === 'area') {
+            area[3] === null
+                ? areaValue = area[1]
+                : area[3] === 'null'
+                    ? areaValue = area[2]
+                    : areaValue = area[3];
+        } else if (areaKey === 'subway') {
+            area[2] === null
+                ? areaValue = null
+                : area[2] === 'null'
+                    ? areaValue = area[1]
+                    : areaValue = area[2];
+        }
+
+        // 组装筛选条件
+        const newFilters = {
+            [areaKey]: areaValue,
+            rentType: mode[0],
+            price: price[0],
+            more: more.join(',')
+        };
+        console.log('newFilters',newFilters)
+        // 将筛选条件更新给父组件
+        setFilters(newFilters);
         setOpenType('')
+        console.log('filters',filters)
+
     };
     const onClear = () => {
         // 更新筛选条件state
