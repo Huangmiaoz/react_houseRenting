@@ -22,7 +22,7 @@ const Sticky = ({
             if (top < 0) {
                 // 当占位符移出视口时,增加fixed类名,并设置占位符高度
                 contentEl.classList.add(styles.fixed);
-
+                // 这个height是通用性处理~
                 placeholderEl.style.height = `${height}px`;
             } else {
                 // 当占位符移入视口时,移除fixed类名,并取消占位符高度

@@ -34,6 +34,7 @@ const Search = () => {
   useEffect(() => {
     const getHouseList = async (filters, cityValue) => {
       // 加载提示
+      setIsLoading(true);
       Toast.show({
         icon: 'loading',
         content: '加载中…',
@@ -57,6 +58,14 @@ const Search = () => {
       setIsLoading(false);
       // 清除加载提示
       Toast.clear();
+
+      // 当房源多于0套时，显示找到房源提示
+      if (result.data.body.count > 0) {
+        Toast.show({
+          icon: 'success',
+          content: `已找到${result.data.body.count}套房源`,
+        });
+      }
     }
 
     getHouseList(filters, cityValue);
@@ -78,7 +87,7 @@ const Search = () => {
         height={41}
         placeholder={placeholder}
         content={content}
-      > 
+      >
         <Filter
           filters={filters}
           setFilters={setFilters}
@@ -110,7 +119,7 @@ const HouseList = ({
   isLoading
 }) => {
   const history = useNavigate();
-  console.log(filters, city, houselist, houseCount, isLoading)
+  // console.log(filters, city, houselist, houseCount, isLoading)
   // 没有找到房源时显示提示页面
   if (houseCount === 0 && !isLoading) {
     return (

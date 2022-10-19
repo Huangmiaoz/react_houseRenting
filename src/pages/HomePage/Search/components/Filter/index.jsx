@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { axiosAPI as axios } from '../../../../../utils/axios';
-import { useCity } from '../../../../../utils/city.js'
+import { getCity, getCurrentCity, useCity } from '../../../../../utils/city.js'
 import { Mask } from 'antd-mobile'
 import FilterTitle from './FilterTitle';
 import FilterPicker from './FilterPicker';
@@ -10,10 +10,12 @@ import _ from 'lodash'
 import styles from './index.module.css'
 const Filter = ({
     filters,
-    setFilters
+    setFilters,
+    placeholder,
+    content
 }) => {
     // 获取当前城市
-    const [cityValue] = useCity();
+    // const [cityValue] = useCity();
     // 设置筛选条件state
     const defaultSelected = {
         area: ['area', 'null', null, null],
@@ -38,15 +40,21 @@ const Filter = ({
     const [filterData, setFilterData] = useState({});
     // 组合筛选条件,因为要父子之间传递，因此直接在父组件中定义即可，然后传递到子组件来，无需再在子组件中定义
     // const [filters,setFilters] = useState({});
-    useEffect(() => {
+    // 获取当前ref对象实例
+    const placeholderEl = placeholder.current;
+    const contentEl = content.current;
+    useEffect(async() => {
+        console.log('useEffect--> filter')
+        const city =await getCurrentCity();
+        console.log(city);
         const getFilterData = async (id) => {
             const result = await axios.get(`/houses/condition?id=${id}`);
             // 设置筛选条件数据
             setFilterData(result.data.body);
         };
 
-        getFilterData(cityValue);
-    }, [cityValue]);
+        getFilterData(city.value);
+    });
 
     const onTitleClick = (type) => {
         const newTitleSelectedStatus = { ...titleSelectedStatus };
@@ -172,7 +180,20 @@ const Filter = ({
         // 将筛选条件更新给父组件
         setFilters(newFilters);
         setOpenType('')
-        console.log('filters',filters)
+        // console.log('filters',filters)
+
+        // 按下确定键进行条件查询后页面回到顶部
+        // 获取content实例对象的className
+        const fixed = contentEl.className;
+
+        // 当筛选栏被固定时，取消固定并回滚至页面顶部
+        if (fixed) {
+            window.scrollTo(0, 0);
+
+            // 当回滚至页面顶部时,移除fixed类名,并取消占位符高度
+            contentEl.classList.remove(fixed);
+            placeholderEl.style.height = `0px`;
+        }
 
     };
     const onClear = () => {
