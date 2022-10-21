@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getCity } from '../../utils/city'
-import MyNavBar from '../../components/NavBar';
+import MyNavBar from '../../components/MyNavBar/index.jsx';
 import '../css/Mappage.css'
 import { axiosAPI as axios } from '../../utils/axios.js';
 import { BASE_URL } from '../../utils/url.js'

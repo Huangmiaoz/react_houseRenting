@@ -3,7 +3,9 @@ import {NavBar} from 'antd-mobile'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types';
 
-export default function MyNavBar({children}) {
+export default function MyNavBar({
+  children,
+}) {
   const navigate = useNavigate();
   return (
     <NavBar 

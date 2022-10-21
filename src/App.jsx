@@ -6,7 +6,7 @@ import Search from './pages/HomePage/Search/index.jsx';
 import Profile from "./pages/HomePage/profile/index.jsx";
 import HomePage from "./pages/HomePage/index.jsx";
 import MapPage from "./pages/MapPage/index.jsx";
-
+import HouseDetail from './pages/HouseDetail/index.jsx'
 // import './index.css'
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
       </Route>
       <Route path="/citylist" element={<CityList />} />
       <Route path="/mappage" element={<MapPage />} />
+      <Route path="/detail/:id" element={<HouseDetail />} />
     </Routes>
   )
 };

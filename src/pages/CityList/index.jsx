@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { getCurrentCity, setCity } from '../../utils/city';
 import { List as VList, AutoSizer } from 'react-virtualized'
 import  '../css/cityList.css';
-import MyNavBar from '../../components/NavBar/index.jsx';
+import MyNavBar from '../../components/MyNavBar/index.jsx';
 
 export default function CityList() {
   const navigate = useNavigate()

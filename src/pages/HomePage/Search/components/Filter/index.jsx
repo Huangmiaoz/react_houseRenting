@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { axiosAPI as axios } from '../../../../../utils/axios';
-import { getCity, getCurrentCity, useCity } from '../../../../../utils/city.js'
+import { useCity } from '../../../../../utils/city.js'
 import { Mask } from 'antd-mobile'
 import FilterTitle from './FilterTitle';
 import FilterPicker from './FilterPicker';
@@ -15,7 +15,8 @@ const Filter = ({
     content
 }) => {
     // 获取当前城市
-    // const [cityValue] = useCity();
+    const [cityValue, cityLabel] = useCity();
+    console.log(cityValue)
     // 设置筛选条件state
     const defaultSelected = {
         area: ['area', 'null', null, null],
@@ -43,18 +44,19 @@ const Filter = ({
     // 获取当前ref对象实例
     const placeholderEl = placeholder.current;
     const contentEl = content.current;
-    useEffect(async() => {
+    useEffect(() => {
         console.log('useEffect--> filter')
-        const city =await getCurrentCity();
-        console.log(city);
+        // const city =await getCurrentCity();
+        // console.log(city);
+
         const getFilterData = async (id) => {
             const result = await axios.get(`/houses/condition?id=${id}`);
             // 设置筛选条件数据
             setFilterData(result.data.body);
         };
 
-        getFilterData(city.value);
-    });
+        getFilterData(cityValue);
+    },[cityValue]);
 
     const onTitleClick = (type) => {
         const newTitleSelectedStatus = { ...titleSelectedStatus };
