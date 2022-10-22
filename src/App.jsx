@@ -7,6 +7,7 @@ import Profile from "./pages/HomePage/profile/index.jsx";
 import HomePage from "./pages/HomePage/index.jsx";
 import MapPage from "./pages/MapPage/index.jsx";
 import HouseDetail from './pages/HouseDetail/index.jsx'
+import Login from './pages/Login/index.jsx'
 // import './index.css'
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
       <Route path="/citylist" element={<CityList />} />
       <Route path="/mappage" element={<MapPage />} />
       <Route path="/detail/:id" element={<HouseDetail />} />
+      <Route path="/login" element={<Login />} />
+      
     </Routes>
   )
 };
