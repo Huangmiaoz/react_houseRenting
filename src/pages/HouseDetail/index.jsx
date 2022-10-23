@@ -107,7 +107,7 @@ const HouseDetail = () => {
             }
 
             const result = await axios.get(`/user/favorites/${houseId}`);
-            console.log('checkFavorite',result)
+            // console.log('checkFavorite',result)
             const { status, body } = result.data;
 
             if (status === 200) {
@@ -356,6 +356,8 @@ const Like = () => {
     // 设置房源列表和房源数量state
     const [list, setList] = useState([]);
 
+    const history = useNavigate();
+    
     useEffect(() => {
         // 随机获取3套房源
         const getHouseList = async (id, start) => {
@@ -396,6 +398,7 @@ const Like = () => {
                         desc={house.desc}
                         tags={house.tags}
                         price={house.price}
+                        onClick={() => { history(`/detail/${house.houseCode}`) }}
                     />
                 </div>
             ))}
@@ -426,7 +429,14 @@ const Buttons = ({
                     })
                 }
             >在线咨询</span>
-            <span className={styles.reserve}>
+            <span 
+                className={styles.reserve}
+                onClick={
+                    () => Toast.show({
+                        content: '暂未开通该功能'
+                    })
+                }
+            >
                 <a href="tel: ">电话预约</a>
             </span>
         </div>
