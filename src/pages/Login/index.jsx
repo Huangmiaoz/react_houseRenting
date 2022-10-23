@@ -9,14 +9,14 @@ import Navbar from '../../components/Navbar/index.js';
 import * as Yup from 'yup';
 
 // 表单验证的正则表达式
-const REG_UNAME = /^\w{5,8}$/i;
+const REG_UNAME = /^\w{3,8}$/i;
 const REG_PWD = /^\w{5,15}$/i;
 
 
 export default function Login() {
   const history = useNavigate();
   const location = useLocation();
-
+  console.log('login-location',location)
   const LoginSchema = Yup.object().shape({
     username: Yup.string().required('账号为必填项').matches(REG_UNAME, '长度为5到8位，只能出现数字、字母和下划线'),
     password: Yup.string().required('密码为必填项').matches(REG_PWD, '长度为5到12位，只能出现数字、字母和下划线')
@@ -26,7 +26,7 @@ export default function Login() {
       username: e.username,
       password: e.password
     });
-    console.log(result);
+    // console.log(result);
     const { status, body, description } = result.data;
 
     // 根据获取到的服务器响应代码判断操作

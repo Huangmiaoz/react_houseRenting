@@ -3,7 +3,7 @@ import { Toast } from 'antd-mobile';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { axiosAPI as axios } from '../../utils';
+import { axiosAPI as axios} from '../../utils/axios';
 
 import Navbar from '../../components/Navbar';
 
@@ -116,5 +116,5 @@ const Register = () => {
 export default Register;
 
 // 表单验证的正则表达式
-const REG_UNAME = /^\w{5,8}$/i;
+const REG_UNAME = /^\w{3,8}$/i;
 const REG_PWD = /^\w{5,15}$/i;

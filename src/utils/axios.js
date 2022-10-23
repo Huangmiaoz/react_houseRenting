@@ -8,7 +8,7 @@ export const axiosAPI = axios.create({
 // 请求拦截器
 axiosAPI.interceptors.request.use((config) => {
     const { url } = config;
-
+    // console.log(config);
     if (
         url.startsWith('/user')
         && !url.startsWith('/user/login')
