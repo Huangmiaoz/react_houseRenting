@@ -357,7 +357,7 @@ const Like = () => {
     const [list, setList] = useState([]);
 
     const history = useNavigate();
-    
+
     useEffect(() => {
         // 随机获取3套房源
         const getHouseList = async (id, start) => {

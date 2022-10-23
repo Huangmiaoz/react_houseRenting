@@ -10,6 +10,7 @@ import HouseDetail from './pages/HouseDetail/index.jsx'
 import Login from './pages/Login/index.jsx'
 import Register from './pages/Register/index.js'
 import AuthRoute from "./components/AuthRoute/index.js";
+import Favorite from "./pages/Favorite/index.js";
 // import './index.css'
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
       <Route path="/detail/:id" element={<HouseDetail />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      {/* <Route
+      <Route
         path="/favorite"
         element={(
           <AuthRoute>
@@ -35,7 +36,7 @@ function App() {
           </AuthRoute>
         )}
       />
-      <Route
+      {/* <Route
         path="/rent"
         element={(
           <AuthRoute>
@@ -57,7 +58,7 @@ function App() {
             <RentSearch />
           </AuthRoute>
         )}
-      /> */}
+      />  */}
 
     </Routes>
   )
