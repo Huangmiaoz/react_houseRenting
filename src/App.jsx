@@ -9,9 +9,13 @@ import MapPage from "./pages/MapPage/index.jsx";
 import HouseDetail from './pages/HouseDetail/index.jsx'
 import Login from './pages/Login/index.jsx'
 import Register from './pages/Register/index.js'
+// 路由访问控制组件
 import AuthRoute from "./components/AuthRoute/index.js";
 import Favorite from "./pages/Favorite/index.js";
-// import './index.css'
+import RentSearch from './pages/Rent/RentSearch/index.js'
+import RentAdd from "./pages/Rent/RentAdd/index.js";
+import Rent from "./pages/Rent/index.js";
+
 function App() {
   return (
     <Routes>
@@ -28,6 +32,7 @@ function App() {
       <Route path="/detail/:id" element={<HouseDetail />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      {/* 登录后才能访问的页面————AuthRoute */}
       <Route
         path="/favorite"
         element={(
@@ -36,8 +41,9 @@ function App() {
           </AuthRoute>
         )}
       />
-      {/* <Route
+      <Route
         path="/rent"
+        exact
         element={(
           <AuthRoute>
             <Rent />
@@ -58,8 +64,7 @@ function App() {
             <RentSearch />
           </AuthRoute>
         )}
-      />  */}
-
+      />
     </Routes>
   )
 };
