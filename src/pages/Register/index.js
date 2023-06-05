@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import { axiosAPI as axios} from '../../utils/axios';
+import { setToken } from '../../utils/auth.js';
 
 import Navbar from '../../components/Navbar';
 
@@ -31,7 +32,8 @@ const Register = () => {
 
         // 根据获取到的服务器响应代码判断操作
         if (status === 200) {
-            localStorage.setItem('hkzf_token', body.token);
+            // localStorage.setItem('hkzf_token', body.token);
+            setToken(body.token);
 
             Toast.show({
                 icon: 'success',

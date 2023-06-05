@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { Link,useNavigate,useLocation } from 'react-router-dom';
 import { Grid, Toast } from 'antd-mobile';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -7,6 +7,7 @@ import { axiosAPI as axios } from '../../utils/axios.js';
 import styles from './index.module.css'
 import Navbar from '../../components/Navbar/index.js';
 import * as Yup from 'yup';
+import { setToken } from '../../utils/auth.js';
 
 // 表单验证的正则表达式
 const REG_UNAME = /^\w{3,8}$/i;
@@ -31,7 +32,8 @@ export default function Login() {
 
     // 根据获取到的服务器响应代码判断操作
     if (status === 200) {
-      localStorage.setItem('hkzf_token', body.token);
+      // localStorage.setItem('hkzf_token', body.token);
+      setToken(body.token);
 
       location.state
         ? history(location.state.from.pathname, { replace: true })

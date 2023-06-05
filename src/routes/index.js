@@ -1,8 +1,8 @@
-import { Navigate, Router, Routes,Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import CityList from "../pages/CityList";
 import Home from "../pages/HomePage";
 import News from "../pages/HomePage/News";
-import Profile from "../pages/HomePage/profile";
+import Profile from "../pages/HomePage/Profile";
 import Search from "../pages/search";
 
 const Routers = [
