@@ -3,41 +3,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Input, Form, CascadePicker, TextArea, ImageUploader, Toast } from 'antd-mobile';
 
 import { axiosAPI as axios } from '../../../utils/axios';
-
+import { roomTypeData, floorData, orientedData } from './const/data.js'
 import Navbar from '../../../components/Navbar';
 import HousePackage from '../../../components/HousePackage';
 
 import styles from './index.module.css'
 
 const RentAdd = () => {
-    const roomTypeData = [
-        { label: '一室', value: 'ROOM|d4a692e4-a177-37fd' },
-        { label: '二室', value: 'ROOM|d1a00384-5801-d5cd' },
-        { label: '三室', value: 'ROOM|20903ae0-c7bc-f2e2' },
-        { label: '四室', value: 'ROOM|ce2a5daa-811d-2f49' },
-        { label: '四室+', value: 'ROOM|2731c38c-5b19-ff7f' },
-    ];
-
-    const floorData = [
-        { label: '高楼层', value: 'FLOOR|1' },
-        { label: '中楼层', value: 'FLOOR|2' },
-        { label: '低楼层', value: 'FLOOR|3' },
-    ];
-
-    const orientedData = [
-        { label: '东', value: 'ORIEN|141b98bf-1ad0-11e3' },
-        { label: '西', value: 'ORIEN|103fb3aa-e8b4-de0e' },
-        { label: '南', value: 'ORIEN|61e99445-e95e-7f37' },
-        { label: '北', value: 'ORIEN|caa6f80b-b764-c2df' },
-        { label: '东南', value: 'ORIEN|dfb1b36b-e0d1-0977' },
-        { label: '东北', value: 'ORIEN|67ac2205-7e0f-c057' },
-        { label: '西南', value: 'ORIEN|2354e89e-3918-9cef' },
-        { label: '西北', value: 'ORIEN|80795f1a-e32f-feb9' },
-    ];
-
     const history = useNavigate();
     const location = useLocation();
-    console.log('location--add',location);
     // 设置房源信息state
     const initialHouseValue = {
         title: '',
@@ -52,6 +26,8 @@ const RentAdd = () => {
         houseImg: ''
     };
     const [houseValue, setHouseValue] = useState(initialHouseValue);
+    // 设置图片队列state
+    const [fileList, setFileList] = useState([]);
 
     // 进入页面时判断是否存在location.state属性，根据这个属性显示小区名称
     useEffect(() => {
@@ -62,9 +38,6 @@ const RentAdd = () => {
             }
         ));
     }, [location]);
-
-    // 设置图片队列state
-    const [fileList, setFileList] = useState([]);
 
     // 点击取消时清空房源信息和location.state，刷新页面
     const onCancel = () => {
