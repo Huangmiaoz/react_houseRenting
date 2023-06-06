@@ -8,7 +8,7 @@ export const axiosAPI = axios.create({
 // 请求拦截器
 axiosAPI.interceptors.request.use((config) => {
     const { url } = config;
-    // console.log(config);
+    
     if (
         url.startsWith('/user')
         && !url.startsWith('/user/login')
@@ -22,7 +22,7 @@ axiosAPI.interceptors.request.use((config) => {
 
 // 响应拦截器
 axiosAPI.interceptors.response.use((response) => {
-    const { status } = response.data;
+    const { status } = response.status;
 
     if (status === 400) {
         removeToken();
