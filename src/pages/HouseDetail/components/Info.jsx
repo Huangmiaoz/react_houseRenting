@@ -2,6 +2,7 @@
 import { Grid } from 'antd-mobile';
 import HousePackage from '../../../components/HousePackage/index.js'
 import { BASE_URL } from '../../../utils/url.js';
+import { useEffect } from 'react';
 
 const Info = ({
     floor,
@@ -12,9 +13,59 @@ const Info = ({
     tags,
     title,
     community,
+    coord,
     supporting,
     description
 }) => {
+    const renderMap = (coord, community) => {
+        const { longitude, latitude } = coord;
+
+        // 创建地图实例
+        const map = new BMapGL.Map('map');
+
+        // 创建坐标实例
+        const point = new BMapGL.Point(longitude, latitude);
+        map.centerAndZoom(point, 16);
+
+        // 禁止地图拖动
+        map.disableDragging();
+
+        // 添加缩放控件
+        const zoomCtrl = new BMapGL.ZoomControl();
+        map.addControl(zoomCtrl);
+
+        // 创建覆盖物
+        const label = new BMapGL.Label('', {
+            position: point,
+            offset: new BMapGL.Size(0, -35)
+        });
+
+        // 设置房源覆盖物内容
+        label.setContent(`
+            <div class="${styles.rect}">
+                <span class="${styles.housename}">${community}</span>
+                <i class="${styles.arrow}"></i>
+            </div>
+        `);
+
+        // 设置样式
+        label.setStyle({
+            cursor: 'pointer',
+            border: '0px solid rgb(255, 0, 0)',
+            padding: '0px',
+            whiteSpace: 'nowrap',
+            fontSize: '14px',
+            color: 'rgb(255, 255, 255)',
+            textAlign: 'center'
+        });
+
+        // 添加覆盖物到地图中
+        map.addOverlay(label);
+        console.log(map);
+    };
+    useEffect(() => {
+        renderMap(coord, community);
+    })
     return (
         <>
             <div className={styles.info}>
