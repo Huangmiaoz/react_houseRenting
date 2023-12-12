@@ -13,7 +13,7 @@ import HouseItems from '../../../components/HouseItems/HouseItems.jsx';
 import Sticky from '../../../components/Sticky/index.js';
 import styles from './index.module.css'
 const city = getCity();
-const cityValue = city.value;
+const cityValue = city ? city.value : '';
 
 const Search = () => {
   const history = useNavigate();
