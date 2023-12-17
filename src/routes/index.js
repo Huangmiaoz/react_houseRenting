@@ -4,6 +4,7 @@ import Home from "../pages/HomePage";
 import News from "../pages/HomePage/News";
 import Profile from "../pages/HomePage/Profile";
 import Search from "../pages/search";
+import Chat from "../pages/chat/chat";
 
 const Routers = [
     {
@@ -38,7 +39,11 @@ const Routers = [
 		path:'/',
         exact:true,
 		element:<Navigate to="/home"/>
-	}
+	},
+    {
+        path:'/chat',
+		element:<Chat/>
+    }
 ]
 
 export default Routers

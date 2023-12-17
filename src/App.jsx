@@ -22,6 +22,7 @@ import RentAdd from "./pages/Rent/RentAdd/index.js";
 import Rent from "./pages/Rent/index.js";
 
 import Error from "./pages/Error/index.jsx"
+import Chat from './pages/chat/chat.jsx';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         </Route>
         {/* <Suspense fallback={<Loading />}> */}
           <Route path="/citylist" element={<CityList />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/mappage" element={<MapPage />} />
           <Route path="/detail/:id" element={<HouseDetail />} />
           <Route path="/login" element={<Login />} />
