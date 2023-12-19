@@ -5,6 +5,8 @@ import { BASE_URL } from '../../../../../utils/url.js';
 import { List as VList, AutoSizer, InfiniteLoader, WindowScroller } from 'react-virtualized'
 import { useNavigate } from 'react-router-dom';
 import HouseItems from '../../../../../components/HouseItems/HouseItems.jsx';
+import NoHouse from '../../../../../components/NoHouse/index.js';
+import styles from '../../index.module.less'
 // 结合antd-mobile v5的List组件写法，可以修复react-virtualized无法渲染太多数据的问题
 const HouseList = ({
     filters,

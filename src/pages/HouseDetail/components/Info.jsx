@@ -21,23 +21,23 @@ const Info = ({
         const { longitude, latitude } = coord;
 
         // 创建地图实例
-        const map = new BMapGL.Map('map');
+        const map = new window.BMapGL.Map('map');
 
         // 创建坐标实例
-        const point = new BMapGL.Point(longitude, latitude);
+        const point = new window.BMapGL.Point(longitude, latitude);
         map.centerAndZoom(point, 16);
 
         // 禁止地图拖动
         map.disableDragging();
 
         // 添加缩放控件
-        const zoomCtrl = new BMapGL.ZoomControl();
+        const zoomCtrl = new window.BMapGL.ZoomControl();
         map.addControl(zoomCtrl);
 
         // 创建覆盖物
-        const label = new BMapGL.Label('', {
+        const label = new window.BMapGL.Label('', {
             position: point,
-            offset: new BMapGL.Size(0, -35)
+            offset: new window.BMapGL.Size(0, -35)
         });
 
         // 设置房源覆盖物内容

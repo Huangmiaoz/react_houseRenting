@@ -37,7 +37,7 @@ const MySearchBar = ({city}) => {
         )
     return (       
         <div>
-            <NavBar right={right} left={arrow_show ? left : null} backArrow={null} onBack={() => { navigate(-1) }}>
+            <NavBar right={right} left={arrow_show ? left : null} backArrow={null} onBack={() => { history(-1) }}>
                 {middle}
             </NavBar>
         </div>

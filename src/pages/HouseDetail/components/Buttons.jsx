@@ -4,7 +4,7 @@ import { Toast } from 'antd-mobile';
 import { isAuth } from '../../../utils/auth.js'
 import { useEffect,useState } from 'react';
 import { axiosAPI as axios } from '../../../utils/axios.js';
-
+import { Modal } from 'antd-mobile';
 const Buttons = ({houseId}) => {
     // 设置是否被收藏的state
     const [isFavorite, setIsFavorite] = useState(false);
@@ -56,7 +56,7 @@ const Buttons = ({houseId}) => {
                 title: '提示',
                 content: '登录后才能收藏房源，是否去登录？',
                 confirmText: '去登录',
-                onConfirm: () => { history('/login') }
+                // onConfirm: () => history('/login')
             });
         }
     };

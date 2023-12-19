@@ -28,7 +28,7 @@ const Chat = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post('/chats/list');
+        const response = await axios.post('/chats/user');
         setList(response.data.list);
         setIsLoading(true);
       } catch (error) {
